@@ -1,14 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repayment Loan</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+.card{
+background:#fff;
+width:360px;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+label{
+font-weight:bold;
+display:block;
+margin-top:15px;
+}
+.box{
+background:#f1f1f1;
+padding:12px;
+border-radius:8px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+button{
+width:100%;
+margin-top:20px;
+padding:12px;
+background:#28a745;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+.apps{
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+}
+.apps a{
+text-decoration:none;
+background:#eee;
+padding:10px;
+border-radius:8px;
+font-size:14px;
+}
+#msg{
+display:none;
+color:green;
+text-align:center;
+margin-top:15px;
+}
+input{
+width:100%;
+padding:10px;
+margin-top:8px;
+border:1px solid #ccc;
+border-radius:8px;
+box-sizing:border-box;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h2>Repayment Loan</h2>
+
+<label>UPI ID</label>
+
+<div class="box">
+<span id="upi">yourupi@bank</span>
+<button style="width:auto;padding:8px 12px;" onclick="copyUPI()">Copy</button>
+</div>
+
+<label>Amount</label>
+
+<div class="box">
+<span id="amount">₹5000</span>
+</div>
+
+<label>UTR Number</label>
+
+<input type="text" id="utr" placeholder="Enter UTR Number">
+
+<button onclick="submitUTR()">Submit</button>
+
+<div id="msg">
+Payment Submitted Successfully ✅
+</div>
+
+<div class="apps">
+<a id="gpay" href="#">Google Pay</a>
+<a id="phonepe" href="#">PhonePe</a>
+<a id="paytm" href="#">Paytm</a>
+</div>
+
+</div>
+
 <script>
-const params = new URLSearchParams(window.location.search);
 
-const upi = params.get("upi");
-const amount = params.get("amount");
+const params=new URLSearchParams(window.location.search);
 
-if (upi) {
-  document.getElementById("upi").innerText = upi;
+const upi=params.get("upi") || "yourupi@bank";
+const amount=params.get("amount") || "5000";
+
+document.getElementById("upi").innerText=upi;
+document.getElementById("amount").innerText="₹"+amount;
+
+const upiLink=`upi://pay?pa=${upi}&pn=Repayment&am=${amount}&cu=INR`;
+
+document.getElementById("gpay").href=upiLink;
+document.getElementById("phonepe").href=upiLink;
+document.getElementById("paytm").href=upiLink;
+
+function copyUPI(){
+navigator.clipboard.writeText(upi);
+alert("UPI Copied");
 }
 
-if (amount) {
-  document.getElementById("amount").innerText = "₹" + amount;
+function submitUTR(){
+let utr=document.getElementById("utr").value;
+
+if(utr==""){
+alert("Enter UTR Number");
+return;
 }
+
+document.getElementById("msg").style.display="block";
+}
+
 </script>
+
+</body>
+</html>
