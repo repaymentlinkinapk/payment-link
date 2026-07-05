@@ -1,21 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Repayment Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repayment Page</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+.container{
+    background:#fff;
+    padding:25px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+h2{
+    text-align:center;
+}
+label{
+    font-weight:bold;
+}
+.box{
+    background:#f1f1f1;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin-bottom:15px;
+    word-break:break-all;
+}
+input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#218838;
+}
+#msg{
+    color:green;
+    text-align:center;
+    margin-top:15px;
+    display:none;
+}
+</style>
 </head>
+
 <body>
+
+<div class="container">
 
 <h2>Repayment Page</h2>
 
-<form>
-    <label>UPI ID</label><br>
-    <input type="text" placeholder="Enter UPI ID"><br><br>
+<label>UPI ID</label>
+<div class="box" id="upi">yourupi@bank</div>
 
-    <label>Amount</label><br>
-    <input type="number" placeholder="Enter Amount"><br><br>
+<label>Amount</label>
+<div class="box">₹5000</div>
 
-    <button type="submit">Submit</button>
-</form>
+<label>UTR Number</label>
+<input type="text" id="utr" placeholder="Enter UTR Number" required>
+
+<button onclick="submitUTR()">Submit</button>
+
+<p id="msg">Payment Details Submitted Successfully.</p>
+
+</div>
+
+<script>
+function submitUTR(){
+
+let utr=document.getElementById("utr").value;
+
+if(utr==""){
+alert("Please Enter UTR Number");
+return;
+}
+
+document.getElementById("msg").style.display="block";
+
+}
+</script>
 
 </body>
 </html>
