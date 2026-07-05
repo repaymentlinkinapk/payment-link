@@ -1,129 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repayment Loan</title>
-
-<style>
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f3f4f6;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-.card{
-    background:#fff;
-    width:350px;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
-}
-h2{
-    text-align:center;
-    color:#0d6efd;
-}
-.label{
-    font-weight:bold;
-    margin-top:15px;
-}
-.box{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#f8f9fa;
-    border:1px solid #ddd;
-    padding:10px;
-    border-radius:8px;
-    margin-top:5px;
-}
-.copy-btn{
-    background:#0d6efd;
-    color:#fff;
-    border:none;
-    padding:6px 12px;
-    border-radius:6px;
-    cursor:pointer;
-}
-input{
-    width:100%;
-    padding:12px;
-    margin-top:8px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    box-sizing:border-box;
-}
-.submit{
-    width:100%;
-    margin-top:18px;
-    background:#28a745;
-    color:#fff;
-    border:none;
-    padding:12px;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-}
-#msg{
-    display:none;
-    color:green;
-    text-align:center;
-    margin-top:15px;
-    font-weight:bold;
-}
-</style>
-
-</head>
-<body>
-
-<div class="card">
-
-<h2>Repayment Loan</h2>
-
-<div class="label">UPI ID</div>
-<div class="box">
-<span id="upi">yourupi@bank</span>
-<button class="copy-btn" onclick="copyUPI()">Copy</button>
-</div>
-
-<div class="label">Amount</div>
-<div class="box">
-<span>₹5000</span>
-</div>
-
-<div class="label">UTR Number</div>
-<input type="text" id="utr" placeholder="Enter UTR Number">
-
-<button class="submit" onclick="submitUTR()">Submit</button>
-
-<div id="msg">Payment Submitted Successfully ✅</div>
-
-</div>
-
 <script>
+const params = new URLSearchParams(window.location.search);
 
-function copyUPI(){
-navigator.clipboard.writeText(document.getElementById("upi").innerText);
-alert("UPI ID Copied");
+const upi = params.get("upi");
+const amount = params.get("amount");
+
+if (upi) {
+  document.getElementById("upi").innerText = upi;
 }
 
-function submitUTR(){
-
-let utr=document.getElementById("utr").value;
-
-if(utr==""){
-alert("Please Enter UTR Number");
-return;
+if (amount) {
+  document.getElementById("amount").innerText = "₹" + amount;
 }
-
-document.getElementById("msg").style.display="block";
-
-}
-
 </script>
-
-</body>
-</html>
