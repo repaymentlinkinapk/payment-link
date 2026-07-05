@@ -3,92 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repayment Page</title>
+<title>Repayment Loan</title>
 
 <style>
 body{
-    font-family: Arial, sans-serif;
-    background:#f4f4f4;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f4f6;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
-    margin:0;
 }
-.container{
+.card{
     background:#fff;
-    padding:25px;
     width:350px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 h2{
     text-align:center;
+    color:#0d6efd;
 }
-label{
+.label{
     font-weight:bold;
+    margin-top:15px;
 }
 .box{
-    background:#f1f1f1;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#f8f9fa;
+    border:1px solid #ddd;
     padding:10px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin-bottom:15px;
-    word-break:break-all;
+    border-radius:8px;
+    margin-top:5px;
+}
+.copy-btn{
+    background:#0d6efd;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
 }
 input{
     width:100%;
-    padding:10px;
-    margin-top:5px;
-    margin-bottom:15px;
+    padding:12px;
+    margin-top:8px;
     border:1px solid #ccc;
-    border-radius:5px;
+    border-radius:8px;
     box-sizing:border-box;
 }
-button{
+.submit{
     width:100%;
-    padding:12px;
+    margin-top:18px;
     background:#28a745;
-    color:white;
+    color:#fff;
     border:none;
-    border-radius:5px;
-    cursor:pointer;
+    padding:12px;
+    border-radius:8px;
     font-size:16px;
-}
-button:hover{
-    background:#218838;
+    cursor:pointer;
 }
 #msg{
+    display:none;
     color:green;
     text-align:center;
     margin-top:15px;
-    display:none;
+    font-weight:bold;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="container">
+<div class="card">
 
-<h2>Repayment Page</h2>
+<h2>Repayment Loan</h2>
 
-<label>UPI ID</label>
-<div class="box" id="upi">yourupi@bank</div>
+<div class="label">UPI ID</div>
+<div class="box">
+<span id="upi">yourupi@bank</span>
+<button class="copy-btn" onclick="copyUPI()">Copy</button>
+</div>
 
-<label>Amount</label>
-<div class="box">₹5000</div>
+<div class="label">Amount</div>
+<div class="box">
+<span>₹5000</span>
+</div>
 
-<label>UTR Number</label>
-<input type="text" id="utr" placeholder="Enter UTR Number" required>
+<div class="label">UTR Number</div>
+<input type="text" id="utr" placeholder="Enter UTR Number">
 
-<button onclick="submitUTR()">Submit</button>
+<button class="submit" onclick="submitUTR()">Submit</button>
 
-<p id="msg">Payment Details Submitted Successfully.</p>
+<div id="msg">Payment Submitted Successfully ✅</div>
 
 </div>
 
 <script>
+
+function copyUPI(){
+navigator.clipboard.writeText(document.getElementById("upi").innerText);
+alert("UPI ID Copied");
+}
+
 function submitUTR(){
 
 let utr=document.getElementById("utr").value;
@@ -101,6 +122,7 @@ return;
 document.getElementById("msg").style.display="block";
 
 }
+
 </script>
 
 </body>
